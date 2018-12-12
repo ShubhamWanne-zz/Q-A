@@ -12,7 +12,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="questions")
-public class Question {
+public class Question extends AuditModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="question_generator")
 	@SequenceGenerator(name="question_generator", initialValue=1000, sequenceName="question_sequence")

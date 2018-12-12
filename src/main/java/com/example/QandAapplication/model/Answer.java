@@ -18,19 +18,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name= "answers")
-public class Answer {
+public class Answer extends AuditModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="answer_generator")
 	@SequenceGenerator(name="answer_generator", sequenceName="answer_sequence", initialValue=1000)
 	private Long id;
+
 	@Column(columnDefinition="text")
 	private String text;
+
 	@ManyToOne(fetch= FetchType.LAZY, optional= false)
 	@JoinColumn(name="question_id", nullable=false)
 	@OnDelete(action= OnDeleteAction.CASCADE)
 	@JsonIgnore
-
 	private Question question;
+	
+	
 	public Long getId() {
 		return id;
 	}
